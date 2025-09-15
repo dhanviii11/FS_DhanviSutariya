@@ -1,0 +1,48 @@
+Data Aggregation And Preprocessing
+FUNCTION PREPROCESS_DATA(student_data, campus_map_data, transport_apis):
+  // Input: Student profiles, campus map, live transport/traffic APIs.
+
+  // Step 1: Normalize student data
+  FOR each student IN student_data:
+    student.location = GEOCODE(student.address) // Convert address to GPS coordinates
+    student.schedule = PARSE_SCHEDULE(student.class_schedule)
+  END FOR
+
+  // Step 2: Fetch and store real-time data
+  traffic_data = FETCH_REAL_TIME_TRAFFIC_DATA()
+  transit_data = FETCH_REAL_TIME_TRANSIT_UPDATES()
+
+  RETURN {student_data, campus_map_data, traffic_data, transit_data}
+
+  Multi-Objective Optimization Algorithm
+
+  FUNCTION OPTIMIZE_COMMUTE(student, preprocessed_data):
+  // Input: Single student's data and preprocessed system data.
+  // Output: A list of ranked commute options.
+
+  options = []
+  
+  // Option 1: Car Route
+  car_route = CALCULATE_SHORTEST_PATH(student.location, campus.location, preprocessed_data.traffic_data)
+  cost_car = CALCULATE_COST(car_route, "car")
+  options.add({type: "car", route: car_route, time: car_route.time, cost: cost_car})
+
+  // Option 2: Public Transport Route
+  IF student.prefers_public_transport:
+    transit_route = FIND_BEST_TRANSIT_ROUTE(student.location, campus.location, preprocessed_data.transit_data)
+    cost_transit = CALCULATE_COST(transit_route, "public_transport")
+    options.add({type: "public_transport", route: transit_route, time: transit_route.time, cost: cost_transit})
+  END IF
+  
+  // Option 3: Walking/Biking Route
+  IF student.prefers_active_transport:
+    active_route = CALCULATE_SHORTEST_PATH_ACTIVE(student.location, campus.location)
+    cost_active = CALCULATE_COST(active_route, "active") // Cost is low
+    options.add({type: "active", route: active_route, time: active_route.time, cost: cost_active})
+  END IF
+  
+  // Step 3: Rank the options
+  // Use a weighted score based on student preferences (e.g., time, cost, effort)
+  RANK_OPTIONS(options, student.preferences)
+
+  RETURN options
