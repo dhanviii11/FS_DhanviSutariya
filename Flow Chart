@@ -1,0 +1,15 @@
+high level daigram as such flow:
+
+start
+  | 
+Student Enter Home And destination
+  |
+System display Route on map 
+  |
+Backend Logic Compares Multiple route
+  |
+And Overlaps or partner found 
+yes/No
+/Suggest Ride found sharing matches \Show no nearby
+  | 
+Assign Hidden name and unique  
