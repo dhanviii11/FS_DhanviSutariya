@@ -1,0 +1,16 @@
+Frontend (Student-Facing Interface)
+The frontend is all about providing a seamless and intuitive user experience. Its primary job is to collect user input and display the optimized results clearly.
+
+User Input: The interface should allow students to easily input their starting location (e.g., using a map pin or an address search bar) and destination (e.g., a university building). It should also have controls for adding preferences like a specific departure/arrival time, preferred mode of transport (car, bus, bike), and any cost constraints.
+
+Data Visualization: The frontend must clearly visualize the recommended routes on an interactive map. It should use color-coding to show live traffic, display public transport routes with icons, and show estimated travel times and costs for each option.
+
+Real-time Alerts: This component would handle displaying notifications about traffic delays, public transit service changes, or a carpool partner's status. It needs to be responsive and easy to understand at a glance.
+
+Backend ( System Operation)
+The backend is the brain of the operation, handling all the complex processing and data management.
+
+API Layer: The backend exposes a set of APIs that the frontend can call. This includes endpoints for get_route_options, submit_carpool_request, and get_realtime_alerts. These APIs act as the bridge between the user interface and the core logic.
+
+Data Aggregation Engine: This is where the backend pulls in data from multiple sources. It fetches static data (university locations, road maps) and combines it with real-time data from third-party APIs for traffic and public transit schedules.
+
